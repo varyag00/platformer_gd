@@ -1,9 +1,16 @@
 extends Actor
 
 # TODO: implement double jump
+# TODO: don't allow player to change speed in the air
+# ! - if !is_on_floor(): keep old speed
+
+export var run_speed := 600
+export var walk_speed := 300
+var _move_speed := Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:
+	_move_speed = calculate_move_speed(speed)
 	var direction := get_direction()
 	var is_jump_interrupted := (
 		Input.is_action_just_released("jump")
@@ -11,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	)
 
 	_velocity = calculate_move_velocity(
-		_velocity, direction, delta, is_jump_interrupted
+		_move_speed, _velocity, direction, delta, is_jump_interrupted
 	)
 	move_and_slide(_velocity, Vector2.UP)
 
@@ -27,19 +34,28 @@ func get_direction() -> Vector2:
 	return dir
 
 
+func calculate_move_speed(speed: Vector2) -> Vector2:
+	var new_speed := speed
+	new_speed.x = walk_speed
+	if Input.is_action_pressed("sprint"):
+		new_speed.x = run_speed
+	return new_speed
+
+
 func calculate_move_velocity(
+	move_speed: Vector2,
 	linear_velocity: Vector2,
 	direction: Vector2,
 	delta: float,
 	is_jump_interrupted: bool
 ) -> Vector2:
 	var new_velocity := linear_velocity
-	new_velocity.x = direction.x * speed.x
+	new_velocity.x = direction.x * move_speed.x
 	new_velocity.y += gravity * delta
 
 	# check for jumps
 	if direction.y == -1.0:
-		new_velocity.y = speed.y * direction.y
+		new_velocity.y = move_speed.y * direction.y
 
 	if is_jump_interrupted:
 		new_velocity.y = 0.0
