@@ -2,7 +2,6 @@ extends Actor
 
 # TODO: implement double jump
 # TODO: don't allow player to change speed in the air
-# ! - if !is_on_floor(): keep old speed
 
 export var run_speed := 600
 export var walk_speed := 300
@@ -20,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	_velocity = calculate_move_velocity(
 		_move_speed, _velocity, direction, delta, is_jump_interrupted
 	)
-	move_and_slide(_velocity, Vector2.UP)
+	move_and_slide(_velocity, UP_DIRECTION)
 
 
 func get_direction() -> Vector2:
