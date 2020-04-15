@@ -36,9 +36,11 @@ func get_direction() -> Vector2:
 
 func calculate_move_speed(speed: Vector2) -> Vector2:
 	var new_speed := speed
-	new_speed.x = walk_speed
-	if Input.is_action_pressed("sprint"):
-		new_speed.x = run_speed
+	# only allow change of x speed when on the ground
+	if not is_on_floor():
+		new_speed.x = walk_speed
+		if Input.is_action_pressed("sprint"):
+			new_speed.x = run_speed
 	return new_speed
 
 
