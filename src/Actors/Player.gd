@@ -2,6 +2,9 @@ extends Actor
 
 # TODO: implement double jump
 # TODO: don't allow player to change speed in the air
+# ! BUG: player does not maintain their run speed in the air
+# !   - This is probably because don't keep a ref to the last move speeed
+# ! BUG: _velocity.y keeps decreasing indefinitely when player on the ground
 
 export var run_speed := 600
 export var walk_speed := 300
@@ -36,10 +39,13 @@ func get_direction() -> Vector2:
 func calculate_move_speed(speed: Vector2) -> Vector2:
 	var new_speed := speed
 	# only allow change of x speed when on the ground
-	if not is_on_floor():
+	if is_on_floor():
 		new_speed.x = walk_speed
 		if Input.is_action_pressed("sprint"):
 			new_speed.x = run_speed
+	else:
+		# TODO: keep current speed, which should already bdone in := speed ....
+		pass
 	return new_speed
 
 
@@ -53,6 +59,8 @@ func calculate_move_velocity(
 	var new_velocity := linear_velocity
 	new_velocity.x = direction.x * move_speed.x
 	new_velocity.y += gravity * delta
+	# TODO: test if this fixes the ever-increasing y
+	new_velocity.y = max(linear_velocity.y, new_velocity.y)
 
 	# check for jumps
 	if direction.y == -1.0:
