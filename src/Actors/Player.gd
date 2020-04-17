@@ -5,6 +5,16 @@ extends Actor
 export var run_speed := 600
 export var walk_speed := 300
 
+export var stomp_impulse := 1100.0
+
+
+func _on_EnemyDetector_area_entered(area: Area2D) -> void:
+	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+
+
+func _on_EnemyDetector_body_entered(body: Node2D) -> void:
+	damage()
+
 
 func _physics_process(delta: float) -> void:
 	speed = calculate_move_speed(speed)
@@ -62,3 +72,14 @@ func calculate_move_velocity(
 		new_velocity.y = 0.0
 
 	return new_velocity
+
+
+func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vector2:
+	var new_velocity := linear_velocity
+	# gotta go fast!
+	new_velocity.y = -impulse
+	return new_velocity
+
+
+func damage() -> void:
+	queue_free()
