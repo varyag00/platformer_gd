@@ -1,6 +1,6 @@
 extends Actor
 
-# TODO: implement double jump
+# TODO: implement double jump _or_ super stomp (slower stomp w/ extra hop if hit something)
 
 export var run_speed := 600
 export var walk_speed := 300
