@@ -51,7 +51,7 @@ func calculate_move_velocity(
 	var new_velocity := linear_velocity
 	new_velocity.x = direction.x * move_speed.x
 	new_velocity.y += gravity * delta
-	# prevents y from increasing infinitely
+	# prevents y velocity from increasing infinitely due to gravity
 	new_velocity.y = max(linear_velocity.y, new_velocity.y)
 
 	# check for jumps

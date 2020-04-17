@@ -2,20 +2,20 @@ extends Actor
 
 class_name Enemy
 
+var _stomp_detector = null
+
 
 func _ready() -> void:
-	# VisibilityEnabler2D deactivates the enemy when off screen
+	# disable physics when off screen (VisibilityEnabler2D)
 	set_physics_process(false)
 	_velocity.x = -speed.x
 
 
-func _on_StompDetector_area_entered(area: Area2D) -> void:
-	print("entered stomper")
-	# if player is below the enemy's stomper position, don't die
-	if area.global_position.y > get_node("StompDetector").global_position.y:
+func _on_StompDetector_body_entered(body: Node2D) -> void:
+	_stomp_detector = get_node("StompDetector")
+	if is_player_above_stomp_detector(body, _stomp_detector):
 		return
-	# destroy enemy
-	queue_free()
+	kill()
 
 
 func _physics_process(delta: float) -> void:
@@ -28,3 +28,12 @@ func _physics_process(delta: float) -> void:
 func change_direction(velocity: Vector2) -> Vector2:
 	velocity.x *= -1
 	return velocity
+
+
+func is_player_above_stomp_detector(player: Node2D, stomp_detector: Area2D) -> bool:
+	var result := player.global_position.y > stomp_detector.global_position.y
+	return result
+
+
+func kill():
+	queue_free()
