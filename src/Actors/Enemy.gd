@@ -14,6 +14,7 @@ func _ready() -> void:
 func _on_StompDetector_body_entered(body: Node2D) -> void:
 	_stomp_detector = get_node("StompDetector")
 	if not is_player_above_stomp_detector(body, _stomp_detector):
+		# ! why not call body.damage() directly instead of dealing with collisions?
 		return
 	get_node("CollisionShape2D").disabled = true
 	kill()
