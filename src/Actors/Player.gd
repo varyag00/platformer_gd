@@ -1,18 +1,13 @@
 extends Actor
 
 # TODO: implement double jump
-# TODO: don't allow player to change speed in the air
-# ! BUG: player does not maintain their run speed in the air
-# !   - This is probably because don't keep a ref to the last move speeed
-# ! BUG: _velocity.y keeps decreasing indefinitely when player on the ground
 
 export var run_speed := 600
 export var walk_speed := 300
-var _move_speed := Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:
-	_move_speed = calculate_move_speed(speed)
+	speed = calculate_move_speed(speed)
 	var direction := get_direction()
 	var is_jump_interrupted := (
 		Input.is_action_just_released("jump")
@@ -20,9 +15,9 @@ func _physics_process(delta: float) -> void:
 	)
 
 	_velocity = calculate_move_velocity(
-		_move_speed, _velocity, direction, delta, is_jump_interrupted
+		speed, _velocity, direction, delta, is_jump_interrupted
 	)
-	move_and_slide(_velocity, UP_DIRECTION)
+	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 
 func get_direction() -> Vector2:
@@ -43,9 +38,6 @@ func calculate_move_speed(speed: Vector2) -> Vector2:
 		new_speed.x = walk_speed
 		if Input.is_action_pressed("sprint"):
 			new_speed.x = run_speed
-	else:
-		# TODO: keep current speed, which should already bdone in := speed ....
-		pass
 	return new_speed
 
 
@@ -59,7 +51,7 @@ func calculate_move_velocity(
 	var new_velocity := linear_velocity
 	new_velocity.x = direction.x * move_speed.x
 	new_velocity.y += gravity * delta
-	# TODO: test if this fixes the ever-increasing y
+	# prevents y from increasing infinitely
 	new_velocity.y = max(linear_velocity.y, new_velocity.y)
 
 	# check for jumps
