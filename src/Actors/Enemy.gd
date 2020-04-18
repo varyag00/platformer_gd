@@ -2,6 +2,8 @@ extends Actor
 
 class_name Enemy
 
+# TODO: add slime bounce animation
+
 var _stomp_detector = null
 
 
