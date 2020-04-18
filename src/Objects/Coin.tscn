@@ -70,6 +70,7 @@ collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="coin" type="Sprite" parent="."]
+position = Vector2( 0, 10 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

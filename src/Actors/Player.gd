@@ -2,18 +2,20 @@ extends Actor
 
 # TODO: implement double jump _or_ super stomp (slower stomp w/ extra hop if hit something)
 
+export var invincible := false
+
 export var run_speed := 600
 export var walk_speed := 300
-
 export var stomp_impulse := 1100.0
 
 
-func _on_EnemyDetector_area_entered(area: Area2D) -> void:
-	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+# TODO: test this out more. If collisions continue to work, delete these plus signals
+# func _on_EnemyDetector_area_entered(area: Area2D) -> void:
+# 	stomp()
 
 
-func _on_EnemyDetector_body_entered(body: Node2D) -> void:
-	damage()
+# func _on_EnemyDetector_body_entered(body: Node2D) -> void:
+# 	damage()
 
 
 func _physics_process(delta: float) -> void:
@@ -82,4 +84,11 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 
 
 func damage() -> void:
+	if invincible:
+		print_debug("damage() called but invisible set")
+		return
 	queue_free()
+
+
+func stomp() -> void:
+	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
