@@ -79,24 +79,18 @@ position = Vector2( 1509, 565 )
 position = Vector2( 1800, 565 )
 
 [node name="Coin" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1081, 411 )
-
-[node name="Coin6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 680, 411 )
-
-[node name="Coin7" parent="." instance=ExtResource( 5 )]
-position = Vector2( 449, 411 )
+position = Vector2( 680, 407 )
 
 [node name="Coin2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1397, 411 )
+position = Vector2( 1081, 407 )
 
 [node name="Coin3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1679, 411 )
+position = Vector2( 1402, 407 )
 
 [node name="Coin4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1958, 255 )
+position = Vector2( 1681, 407 )
 
 [node name="Coin5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 2325, 0 )
+position = Vector2( 2319, 0 )
 
 [editable path="Player"]

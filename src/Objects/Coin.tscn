@@ -11,7 +11,7 @@ resource_name = "bouncing"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Coin/coin:position")
+tracks/0/path = NodePath("coin:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -66,6 +66,8 @@ tracks/1/keys = {
 }
 
 [node name="Coin" type="Area2D"]
+position = Vector2( 0, 10 )
+monitorable = false
 collision_layer = 4
 script = ExtResource( 2 )
 
