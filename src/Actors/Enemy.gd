@@ -4,7 +4,12 @@ class_name Enemy
 
 # TODO: add slime bounce animation
 
+enum States {active, inactive}
+
+onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
+
 var _stomp_detector = null
+var _state = States.active
 
 
 func _ready() -> void:
@@ -14,14 +19,17 @@ func _ready() -> void:
 
 
 func _on_StompDetector_body_entered(body: Node2D) -> void:
+	# disabling collisions doesn't seem to work
+	if not _state == States.active:
+		return
 	_stomp_detector = get_node("StompDetector")
 	if not is_player_above_stomp_detector(body, _stomp_detector):
 		body.damage() # TODO: remove if bad
 		return
-	get_node("CollisionShape2D").disabled = true
+	# I don't think this actually disables collission
+	# get_node("CollisionShape2D").disabled = true
 	kill()
 	body.stomp() # TODO: remove if bad
-
 
 
 func _physics_process(delta: float) -> void:
@@ -42,4 +50,8 @@ func is_player_above_stomp_detector(player: Node2D, stomp_detector: Area2D) -> b
 
 
 func kill() -> void:
+	_state = States.inactive
+	set_physics_process(false)
+	anim_player.play("on_death")
+	yield(anim_player, "animation_finished")
 	queue_free()
