@@ -35,7 +35,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "pulsing"
 length = 2.0
 loop = true
@@ -70,14 +70,13 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 2.0, 2.0 ]
+"values": [ 1.0, 0.5 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "start"
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("TransitionLayer/ColorRect:color")
@@ -109,15 +108,14 @@ monitorable = false
 script = ExtResource( 2 )
 
 [node name="portal" type="Sprite" parent="."]
-modulate = Color( 0.569889, 0.697676, 0.75066, 0.604173 )
-position = Vector2( 0, -119.512 )
+position = Vector2( 0, -115 )
 texture = ExtResource( 1 )
 
 [node name="Light2D" type="Light2D" parent="portal"]
 position = Vector2( 0, 5.15764 )
 texture = ExtResource( 3 )
+texture_scale = 2.01
 color = Color( 0.14902, 0.219608, 0.968627, 1 )
-energy = 2.0
 shadow_enabled = true
 shadow_color = Color( 0.615686, 0.0745098, 0.917647, 0 )
 
@@ -140,6 +138,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "pulsing"
 anims/fade_in_black = SubResource( 2 )
-anims/pulsing = SubResource( 4 )
-anims/start = SubResource( 3 )
+anims/pulsing = SubResource( 3 )
+anims/start = SubResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_Portal2D_body_entered"]
