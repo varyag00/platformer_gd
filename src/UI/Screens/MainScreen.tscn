@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/UI/Components/PlayButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/Components/ChangeSceneButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/Components/Title.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/Components/QuitButton.tscn" type="PackedScene" id=5]
@@ -43,5 +43,8 @@ __meta__ = {
 }
 
 [node name="PlayButton" parent="MainMenu" instance=ExtResource( 2 )]
+next_scene_path = "res://src/Levels/Level01.tscn"
 
 [node name="QuitButton" parent="MainMenu" instance=ExtResource( 5 )]
+margin_top = 71.0
+margin_bottom = 138.0
