@@ -8,9 +8,9 @@ enum States {active, inactive}
 
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 
+export var score_value = 100
 var _stomp_detector = null
 var _state = States.active
-
 
 func _ready() -> void:
 	# disable physics when off screen (VisibilityEnabler2D)
@@ -24,11 +24,11 @@ func _on_StompDetector_body_entered(body: Node2D) -> void:
 		return
 	_stomp_detector = get_node("StompDetector")
 	if not is_player_above_stomp_detector(body, _stomp_detector):
-		body.damage() # TODO: remove if bad
+		body.die() # TODO: remove if bad
 		return
 	# I don't think this actually disables collission
 	# get_node("CollisionShape2D").disabled = true
-	kill()
+	die()
 	body.stomp() # TODO: remove if bad
 
 
@@ -49,9 +49,10 @@ func is_player_above_stomp_detector(player: Node2D, stomp_detector: Area2D) -> b
 	return result
 
 
-func kill() -> void:
+func die() -> void:
 	_state = States.inactive
 	set_physics_process(false)
+	PlayerData.score += score_value
 	anim_player.play("on_death")
 	yield(anim_player, "animation_finished")
 	queue_free()

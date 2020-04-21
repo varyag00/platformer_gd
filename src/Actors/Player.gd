@@ -81,11 +81,12 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	return new_velocity
 
 
-func damage() -> void:
+func die() -> void:
 	if invincible:
-		print_debug("damage() called but invisible set")
+		print_debug("die() called but invisible set")
 		return
 	queue_free()
+	PlayerData.deaths += 1
 
 
 func stomp() -> void:
