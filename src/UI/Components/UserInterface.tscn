@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/UI/Components/QuitButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/Components/Title.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/Components/ChangeSceneButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/Components/RetryButton.tscn" type="PackedScene" id=5]
+
+[node name="UserInterface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -210.0
+margin_top = 40.0
+margin_right = -89.0
+margin_bottom = 71.0
+text = "Score: %s"
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.235294 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" parent="PauseOverlay" instance=ExtResource( 3 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -75.5
+margin_top = -220.0
+margin_right = 75.5
+margin_bottom = -141.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -188.0
+margin_top = -110.0
+margin_right = 188.0
+margin_bottom = 110.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChangeSceneButton" parent="PauseOverlay/VBoxContainer" instance=ExtResource( 4 )]
+margin_right = 376.0
+margin_bottom = 70.0
+text = "Main Menu"
+next_scene_path = "res://src/UI/Screens/MainScreen.tscn"
+
+[node name="RetryButton" parent="PauseOverlay/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 74.0
+margin_right = 376.0
+margin_bottom = 144.0
+
+[node name="QuitButton" parent="PauseOverlay/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 148.0
+margin_right = 376.0
+margin_bottom = 220.0
