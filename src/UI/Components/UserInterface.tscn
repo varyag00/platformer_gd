@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UI/Components/QuitButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/Components/Title.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/Components/ChangeSceneButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UI/Components/RetryButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/Components/UserInterface.gd" type="Script" id=6]
 
 [node name="UserInterface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,6 +26,7 @@ margin_bottom = 71.0
 text = "Score: %s"
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.235294 )

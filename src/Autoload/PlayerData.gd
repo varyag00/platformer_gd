@@ -16,7 +16,7 @@ func reset_game() -> void:
 
 func set_score(value: int) -> void:
 	score = value
-	emit_signal("score_update")
+	emit_signal("score_updated")
 
 
 func set_deaths(value: int) -> void:
