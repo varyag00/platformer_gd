@@ -4,7 +4,7 @@ var paused := false setget set_paused
 onready var scene_tree: SceneTree = get_tree()
 onready var pause_overlay: ColorRect = get_node("PauseOverlay")
 onready var score: Label = get_node("Score")
-onready var pause_title: Label = get_node("Title")
+onready var pause_title: Label = get_node("PauseOverlay/Title")
 
 
 func _ready() -> void:

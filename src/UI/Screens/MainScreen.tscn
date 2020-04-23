@@ -28,9 +28,9 @@ __meta__ = {
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -184.5
-margin_top = -245.5
+margin_top = -240.5
 margin_right = 184.5
-margin_bottom = -166.5
+margin_bottom = -161.5
 text = "Platformer"
 
 [node name="MainMenu" type="VBoxContainer" parent="."]

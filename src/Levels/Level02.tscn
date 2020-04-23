@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -7,8 +7,7 @@
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/Components/UserInterface.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=8]
-[ext_resource path="res://src/UI/Components/UserInterface.gd" type="Script" id=9]
+[ext_resource path="res://src/UI/Screens/EndScreen.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
@@ -45,15 +44,8 @@ __meta__ = {
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 100
 
-[node name="UserInterface" type="Control" parent="UserInterface" instance=ExtResource( 7 )]
+[node name="UserInterface" parent="UserInterface" instance=ExtResource( 7 )]
 pause_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 8 )
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -123,5 +115,6 @@ position = Vector2( 2319, 0 )
 
 [node name="Portal2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3770, 232 )
+next_scene = ExtResource( 8 )
 
 [editable path="Player"]
