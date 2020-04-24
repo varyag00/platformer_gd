@@ -24,12 +24,10 @@ func _on_StompDetector_body_entered(body: Node2D) -> void:
 		return
 	_stomp_detector = get_node("StompDetector")
 	if not is_player_above_stomp_detector(body, _stomp_detector):
-		body.die() # TODO: remove if bad
+		body.die()
 		return
-	# I don't think this actually disables collission
-	# get_node("CollisionShape2D").disabled = true
 	die()
-	body.stomp() # TODO: remove if bad
+	body.stomp()
 
 
 func _physics_process(delta: float) -> void:
