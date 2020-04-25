@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/portal.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/Portal2D.gd" type="Script" id=2]
 [ext_resource path="res://assets/light.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/portal.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 70.0
@@ -33,6 +34,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("PortalOut")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.27934 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -140,4 +155,7 @@ autoplay = "pulsing"
 anims/fade_in_black = SubResource( 2 )
 anims/pulsing = SubResource( 3 )
 anims/start = SubResource( 4 )
+
+[node name="PortalOut" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_Portal2D_body_entered"]

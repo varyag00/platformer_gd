@@ -4,13 +4,14 @@ class_name Enemy
 
 # TODO: add slime bounce animation
 
-enum States {active, inactive}
+enum States { active, inactive }
 
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 
 export var score_value = 100
 var _stomp_detector = null
 var _state = States.active
+
 
 func _ready() -> void:
 	# disable physics when off screen (VisibilityEnabler2D)
