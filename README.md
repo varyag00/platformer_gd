@@ -4,12 +4,12 @@ As the name suggests, this is a generic platformer I made over a couple of weeks
 
 Other than having reading through the [official gdscript style guide](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_styleguide.html) I went in blind. In the (admittedly sparse) commit messages you can see the natural progression of my understanding of the engine, editor, and scripting language.
 
-## Prerequisites to run locally: 
+## Prerequisites to run in godot editor
 - If you want to clone the repo: `git` and `git lfs` (unless you want to download the zip)
-- godot 3.2
+- [godot 3.2.x](https://godotengine.org/download)
 
 
-## FAQs:
+## FAQs
 
 1. Why godot?
    - **tl;dr**: I found Unity alright, but I wanted to try something new.
@@ -27,7 +27,7 @@ Other than having reading through the [official gdscript style guide](https://do
    - Alternatively, see [this issue](https://github.com/git-lfs/git-lfs/issues/325)
 
 
- ## Attributions
+## Attributions
 
 - I followed [GDQuest's excellent tutorial](https://www.youtube.com/watch?v=Mc13Z2gboEk) while building this game. I tried to strike a balance between following along and doing my own thing, as can be evidenced by the inclusion of lighting, sound effects, background music, and several meh animations.
 - All graphical assets were provided by [GDQuest](https://github.com/GDQuest/godot-beginner-2d-platformer/releases/tag/1.1.0) 
