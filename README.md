@@ -1,4 +1,4 @@
-# Platformer
+# Platformer - [Play it Here](https://varyag00.github.io/games/platformer/)
 
 As the name suggests, this is a generic platformer I made over a couple of weeks while becoming acquainted with the [godot engine](https://godotengine.org/). A large chunk of the game was made following a great free [tutorial](https://www.youtube.com/watch?v=Mc13Z2gboEk) by GDQuest. 
 
